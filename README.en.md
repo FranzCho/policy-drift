@@ -9,6 +9,7 @@ that your terms and privacy policy don't say, and your agent proposes the wordin
 
 [한국어](README.md) · **English**
 
+<a href="https://www.npmjs.com/package/policy-drift"><img alt="npm version" src="https://img.shields.io/npm/v/policy-drift"></a>
 <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue">
 <img alt="Node 20 or later" src="https://img.shields.io/badge/node-%E2%89%A5%2020-brightgreen">
 <img alt="MCP server" src="https://img.shields.io/badge/MCP-server-8A2BE2">
@@ -20,20 +21,9 @@ that your terms and privacy policy don't say, and your agent proposes the wordin
 
 ---
 
-```text
-You    > I'm about to deploy. Do the terms or privacy policy need updating?
-
-Agent  > Changes needed: 1 · Privacy policy 1
-
-         1. Privacy policy, 4. Processors — add a row to the table
-            Reason: code that sends user activity text to OpenAI was added
-            Evidence: services/api/src/ai/summarizer.ts:12
-            Proposed wording: | OpenAI, L.L.C. | Summarizing user activity | Until the purpose is fulfilled |
-            Confidence: high
-
-         Notice period: 7 days before, per section 13 of the policy
-         ※ Draft only. Not legal advice. Have a responsible person review before publishing.
-```
+<p align="center">
+  <img src="docs/demo.en.gif" width="760" alt="A terminal where the user asks an AI coding agent whether the terms or privacy policy need updating before a deploy; the agent calls three policy-drift tools and answers with a proposed row for the processors table and the notice period">
+</p>
 
 ## Why
 

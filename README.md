@@ -9,6 +9,7 @@
 
 **한국어** · [English](README.en.md)
 
+<a href="https://www.npmjs.com/package/policy-drift"><img alt="npm 버전" src="https://img.shields.io/npm/v/policy-drift"></a>
 <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue">
 <img alt="Node 20 or later" src="https://img.shields.io/badge/node-%E2%89%A5%2020-brightgreen">
 <img alt="MCP server" src="https://img.shields.io/badge/MCP-server-8A2BE2">
@@ -20,20 +21,9 @@
 
 ---
 
-```text
-나     > 배포 전인데 약관 수정해야 하나?
-
-AI     > 수정이 필요한 곳 1건 · 개인정보처리방침 1건
-
-         1. 개인정보처리방침 4. 처리 위탁 — 표에 한 줄 추가
-            이유: 활동 내용을 OpenAI 로 보내는 코드가 추가됨
-            근거: services/api/src/ai/summarizer.ts:12
-            제안 문구: | OpenAI, L.L.C. | 활동 내용 AI 분석 | 처리 목적 달성 시까지 |
-            확신: 높음
-
-         공지 기한: 처리방침 13항 기준 시행 7일 전
-         ※ 초안입니다. 법률 자문이 아니며 게시 전에 담당자가 확인해야 합니다.
-```
+<p align="center">
+  <img src="docs/demo.ko.gif" width="760" alt="터미널에서 AI 코딩 도구에게 배포 전에 약관을 고쳐야 하는지 묻자, policy-drift 도구 세 개를 부른 뒤 개인정보처리방침 4항 처리 위탁 표에 OpenAI 를 추가하라는 수정 제안과 공지 기한을 답하는 화면">
+</p>
 
 ## 무엇이 다른가
 
