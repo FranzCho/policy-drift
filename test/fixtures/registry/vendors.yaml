@@ -1,0 +1,20 @@
+# Top-level list of Vendor objects (see Vendor in src/types.ts).
+# packages: npm / gradle / pip names; a trailing * means prefix match.
+# domains: host names that show up in code or config.
+# trackers: call patterns (optional). parent: id of the parent vendor (optional).
+# source: official URL that confirms the vendor's HQ country or legal entity (required).
+- id: openai
+  names: [OpenAI, 오픈AI]
+  country: US
+  purpose: LLM API
+  packages: [openai, "spring-ai-starter-model-openai"]
+  domains: [api.openai.com]
+  source: https://openai.com/policies/privacy-policy/
+- id: channel-io
+  names: [Channel.io, 채널톡, 채널코퍼레이션]
+  country: KR
+  purpose: Customer chat
+  packages: ["@channel.io/*"]
+  domains: [channel.io, cdn.channel.io]
+  trackers: ["ChannelIO("]
+  source: https://channel.io/

@@ -1,0 +1,13 @@
+type Query {
+  challenge(id: ID!): Challenge
+  challenges: [Challenge!]!
+}
+
+type Mutation {
+  createChallenge(input: CreateChallengeInput!): Challenge!
+}
+
+input CreateChallengeInput {
+  title: String!
+  contactEmail: String!
+}

@@ -1,0 +1,3 @@
+# python tooling
+requests==2.31.0
+OpenAI>=1.0

@@ -1,0 +1,11 @@
+{
+  "name": "demo-app",
+  "dependencies": {
+    "openai": "^4.0.0",
+    "react": "^18.0.0",
+    "@channel.io/channel-web-sdk-loader": "^1.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0"
+  }
+}

@@ -1,0 +1,340 @@
+# Top-level list of Vendor objects (see Vendor in src/types.ts).
+# One entry = one service (Firebase and Google Analytics are separate entries).
+# names: every name a privacy policy might use (service, legal entity, Korean spelling). ASCII names match
+#   case-insensitively on word boundaries, so an ordinary English word must not go here.
+# strictNames (optional): names that are also ordinary words (Resend, Meta, Segment). Matched case-sensitively
+#   as whole words: "Resend" counts, "we resend" does not.
+# packages: npm / gradle (artifact or group) / pip names; a trailing * means prefix match.
+# domains: host names that show up in code or config. host/path-prefix (googletagmanager.com/gtm.js) matches that path only.
+# trackers: browser call patterns (optional). parent: id of the parent vendor (optional).
+# country: ISO-3166 alpha-2 of the legal entity's HQ.
+# source: official URL (vendor's own policy / legal / company page) that supports the entity or country (required).
+# Parent entries (google, microsoft, meta, kakao, okta, twilio) exist so a policy that names only the parent
+# can be reported as "uncertain" rather than "missing".
+
+# ---- parents ----
+- id: google
+  names: [Google, Google LLC, 구글, 구글 LLC, 구글엘엘씨]
+  country: US
+  purpose: Parent company of Google services
+  packages: []
+  domains: []
+  source: https://policies.google.com/privacy
+- id: microsoft
+  names: [Microsoft, Microsoft Corporation, 마이크로소프트, 마이크로소프트 코퍼레이션]
+  country: US
+  purpose: Parent company of Microsoft services
+  packages: []
+  domains: []
+  source: https://www.microsoft.com/en-us/privacy/privacystatement
+- id: meta
+  names: ["Meta Platforms, Inc.", Meta Platforms Ireland Limited, Meta Platforms, 메타플랫폼스, 페이스북, Facebook]
+  strictNames: [Meta]
+  country: US
+  purpose: Parent company of Meta services
+  packages: []
+  domains: []
+  source: https://www.meta.com/legal/privacy-policy/
+- id: kakao
+  names: [Kakao, Kakao Corp., 카카오, 주식회사 카카오, ㈜카카오]
+  country: KR
+  purpose: Parent company of Kakao services
+  packages: []
+  domains: []
+  source: https://www.kakaocorp.com/
+- id: twilio
+  names: [Twilio, Twilio Inc., 트윌리오]
+  country: US
+  purpose: SMS, voice and messaging API
+  packages: [twilio, com.twilio.sdk]
+  domains: [api.twilio.com, twilio.com]
+  source: https://www.twilio.com/en-us/legal/privacy
+- id: okta
+  names: [Okta, "Okta, Inc."]
+  country: US
+  purpose: Identity and access management
+  packages: ["@okta/*", okta]
+  domains: [okta.com]
+  source: https://www.okta.com/privacy-policy/
+
+# ---- AI ----
+- id: openai
+  names: [OpenAI, "OpenAI, L.L.C.", "OpenAI OpCo, LLC", 오픈AI, 오픈에이아이]
+  country: US
+  purpose: LLM API
+  packages: [openai, openai-java, com.openai, spring-ai-starter-model-openai, spring-ai-openai]
+  domains: [api.openai.com]
+  source: https://openai.com/policies/privacy-policy/
+- id: anthropic
+  names: [Anthropic, Anthropic PBC, "Anthropic Ireland, Limited", 앤트로픽, 앤트로픽코리아]
+  country: US
+  purpose: LLM API
+  packages: ["@anthropic-ai/*", anthropic, anthropic-java, com.anthropic, spring-ai-starter-model-anthropic, spring-ai-anthropic]
+  domains: [api.anthropic.com]
+  source: https://www.anthropic.com/legal/privacy
+
+# ---- monitoring / analytics / session replay ----
+- id: sentry
+  names: [Sentry, "Functional Software, Inc.", 센트리]
+  country: US
+  purpose: Error and performance monitoring
+  packages: ["@sentry/*", "sentry-*", sentry-sdk, io.sentry]
+  domains: [sentry.io, ingest.sentry.io]
+  trackers: ["Sentry.init("]
+  source: https://sentry.io/privacy/
+- id: firebase
+  parent: google
+  names: [Firebase, Firebase Cloud Messaging, FCM, 파이어베이스, 구글 파이어베이스, Google Firebase]
+  country: US
+  purpose: Mobile backend, push notifications (FCM), crash reporting
+  packages: [firebase, firebase-admin, "@firebase/*", "@react-native-firebase/*", com.google.firebase]
+  domains: [fcm.googleapis.com, firebaseio.com, firebaseapp.com, firebaseinstallations.googleapis.com, firebase.googleapis.com]
+  trackers: ["initializeApp("]
+  source: https://firebase.google.com/support/privacy
+- id: google-analytics
+  parent: google
+  names: [Google Analytics, GA4, 구글 애널리틱스, 구글 아날리틱스, 구글 애널리틱스4]
+  country: US
+  purpose: Web and app analytics
+  packages: [react-ga4, react-ga, "@analytics/google-analytics"]
+  domains: [www.google-analytics.com, google-analytics.com, analytics.google.com, googletagmanager.com/gtag/]
+  trackers: ["gtag(", "ga('send'"]
+  source: https://support.google.com/analytics/answer/6004245
+- id: google-tag-manager
+  parent: google
+  names: [Google Tag Manager, GTM, 구글 태그 매니저, 구글 태그매니저]
+  country: US
+  purpose: Tag management
+  packages: [react-gtm-module]
+  # gtag.js (GA4) also loads from googletagmanager.com/gtag/ and calls dataLayer.push, so only the GTM
+  # container script, its noscript iframe and the GTM snippet's 'gtm.start' event count as GTM.
+  domains: [googletagmanager.com/gtm.js, googletagmanager.com/ns.html]
+  trackers: ["gtm.start", "TagManager.initialize("]
+  source: https://support.google.com/tagmanager/answer/9323295
+- id: microsoft-clarity
+  parent: microsoft
+  names: [Microsoft Clarity, 마이크로소프트 클래리티]
+  country: US
+  purpose: Session replay and heatmaps
+  packages: ["@microsoft/clarity", clarity-js]
+  domains: [www.clarity.ms, clarity.ms]
+  trackers: ["clarity("]
+  source: https://learn.microsoft.com/en-us/clarity/faq
+- id: meta-pixel
+  parent: meta
+  names: [Meta Pixel, Facebook Pixel, 메타 픽셀, 페이스북 픽셀, 메타 광고]
+  country: US
+  purpose: Ad conversion tracking
+  packages: [react-facebook-pixel, facebook-nodejs-business-sdk, facebook-business]
+  domains: [connect.facebook.net]
+  trackers: ["fbq("]
+  source: https://www.meta.com/legal/privacy-policy/
+- id: amplitude
+  names: [Amplitude, "Amplitude, Inc.", 앰플리튜드]
+  country: US
+  purpose: Product analytics
+  packages: ["@amplitude/*", amplitude-js, amplitude-analytics, com.amplitude]
+  domains: [api2.amplitude.com, api.amplitude.com, cdn.amplitude.com, api.eu.amplitude.com]
+  trackers: ["amplitude.init(", "amplitude.track("]
+  source: https://amplitude.com/privacy
+- id: mixpanel
+  names: [Mixpanel, "Mixpanel, Inc.", 믹스패널]
+  country: US
+  purpose: Product analytics
+  packages: [mixpanel-browser, mixpanel, mixpanel-react-native, com.mixpanel]
+  domains: [api.mixpanel.com, api-eu.mixpanel.com, cdn.mxpnl.com]
+  trackers: ["mixpanel.init(", "mixpanel.track("]
+  source: https://mixpanel.com/legal/privacy-policy/
+- id: posthog
+  names: [PostHog, PostHog Inc.]
+  country: US
+  purpose: Product analytics and session replay
+  packages: [posthog-js, posthog-node, posthog-react-native, posthog, com.posthog.java]
+  domains: [app.posthog.com, us.i.posthog.com, eu.i.posthog.com, us-assets.i.posthog.com]
+  trackers: ["posthog.init(", "posthog.capture("]
+  source: https://posthog.com/privacy
+- id: datadog
+  names: [Datadog, "Datadog, Inc.", 데이터독]
+  country: US
+  purpose: Infrastructure monitoring, APM, RUM
+  packages: [dd-trace, ddtrace, datadog, datadog-api-client, "@datadog/*", com.datadoghq]
+  domains: [datadoghq.com, datadoghq.eu]
+  trackers: ["datadogRum.init("]
+  source: https://www.datadoghq.com/legal/privacy/
+- id: hotjar
+  names: [Hotjar, Hotjar Ltd, Hotjar Limited]
+  country: MT
+  purpose: Heatmaps and session recordings
+  packages: ["@hotjar/*", react-hotjar]
+  domains: [static.hotjar.com, script.hotjar.com, vars.hotjar.com]
+  trackers: ["hj('identify'", "hj('event'"]
+  source: https://www.hotjar.com/legal/
+- id: logrocket
+  names: [LogRocket, "LogRocket, Inc."]
+  country: US
+  purpose: Session replay and frontend monitoring
+  packages: [logrocket, "logrocket-*"]
+  domains: [logrocket.com, lr-ingest.io, cdn.logr-ingest.com]
+  trackers: ["LogRocket.init("]
+  source: https://logrocket.com/privacy/
+- id: fullstory
+  names: [Fullstory, FullStory, "Fullstory, Inc."]
+  country: US
+  purpose: Session replay and digital experience analytics
+  packages: ["@fullstory/*"]
+  domains: [fullstory.com, edge.fullstory.com]
+  trackers: ["FS.identify("]
+  source: https://www.fullstory.com/legal/privacy-policy/
+- id: vercel-analytics
+  names: [Vercel Analytics, Vercel Speed Insights, Vercel, Vercel Inc., 버셀]
+  country: US
+  purpose: Web analytics and performance metrics
+  packages: ["@vercel/analytics", "@vercel/speed-insights"]
+  domains: [vitals.vercel-insights.com, va.vercel-scripts.com]
+  source: https://vercel.com/legal/privacy-policy
+- id: segment
+  parent: twilio
+  names: [Twilio Segment, "Segment.io, Inc.", Segment.io, Segment.com, 세그먼트]
+  strictNames: [Segment]
+  country: US
+  purpose: Customer data platform
+  packages: ["@segment/*", analytics-node, analytics-python, segment-analytics-python]
+  domains: [api.segment.io, cdn.segment.com, cdn.segment.io]
+  source: https://www.twilio.com/en-us/legal/privacy
+- id: intercom
+  names: [Intercom, "Intercom, Inc.", Intercom R&D Unlimited Company, 인터콤]
+  country: US
+  purpose: Customer messaging
+  packages: ["@intercom/*", intercom-client, react-use-intercom, intercom-java]
+  domains: [widget.intercom.io, js.intercomcdn.com, api-iam.intercom.io, api.intercom.io]
+  trackers: ["Intercom("]
+  source: https://www.intercom.com/legal/privacy
+- id: channel-io
+  names: [Channel.io, Channel Talk, 채널톡, 채널코퍼레이션, 주식회사 채널코퍼레이션, 채널 톡]
+  country: KR
+  purpose: Customer chat
+  packages: ["@channel.io/*", react-native-channel-plugin]
+  domains: [channel.io, cdn.channel.io]
+  trackers: ["ChannelIO("]
+  source: https://channel.io/ko
+
+# ---- messaging / email / push ----
+# Not detectable from code: AlimTalk is sent through a reseller (NHN Cloud, etc.) and has no SDK package or
+# public API host of its own. The entry exists so a policy that names it is understood.
+- id: kakao-alimtalk
+  parent: kakao
+  names: [카카오 알림톡, 알림톡, 카카오톡 알림톡, 카카오 비즈메시지, 카카오톡 비즈메시지, Kakao Alimtalk, AlimTalk]
+  country: KR
+  purpose: KakaoTalk notification messages
+  packages: []
+  domains: []
+  source: https://www.kakaocorp.com/
+- id: sendgrid
+  parent: twilio
+  names: [SendGrid, Twilio SendGrid, 센드그리드]
+  country: US
+  purpose: Transactional email
+  packages: ["@sendgrid/*", sendgrid, sendgrid-java]
+  domains: [api.sendgrid.com, sendgrid.net]
+  source: https://www.twilio.com/en-us/legal/privacy
+- id: resend
+  names: ["Plus Five Five, Inc."]
+  strictNames: [Resend]
+  country: US
+  purpose: Transactional email
+  packages: [resend]
+  domains: [api.resend.com]
+  source: https://resend.com/legal/privacy-policy
+- id: onesignal
+  names: [OneSignal, "OneSignal, Inc."]
+  country: US
+  purpose: Push notifications
+  packages: [react-onesignal, "@onesignal/*", onesignal-sdk, com.onesignal]
+  domains: [onesignal.com, cdn.onesignal.com]
+  trackers: ["OneSignal.init("]
+  source: https://www.onesignal.com/privacy_policy
+- id: stibee
+  names: [Stibee, 스티비, 스티비 주식회사, 주식회사 스티비, ㈜스티비]
+  country: KR
+  purpose: Newsletter email delivery
+  packages: []
+  domains: [stibee.com]
+  source: https://stibee.com/
+- id: nhn-cloud
+  names: [NHN Cloud, NHN클라우드, NHN Cloud Corp., 엔에이치엔클라우드, 엔에이치엔클라우드(주), 엔에이치엔 클라우드, NHN TOAST]
+  country: KR
+  purpose: Cloud infrastructure, SMS and AlimTalk delivery
+  packages: []
+  domains: [cloud.toast.com, nhncloudservice.com, nhncloud.com]
+  source: https://www.nhncloud.com/kr
+
+# ---- infrastructure / backend ----
+- id: aws
+  names: [AWS, Amazon Web Services, 아마존 웹 서비스, 아마존웹서비스, Amazon S3, Amazon SES, AWS S3, AWS SES, Amazon Simple Storage Service, Amazon Simple Email Service]
+  country: US
+  purpose: Cloud infrastructure, object storage (S3), email (SES)
+  packages: [aws-sdk, "@aws-sdk/*", boto3, botocore, software.amazon.awssdk, com.amazonaws]
+  domains: [amazonaws.com]
+  source: https://aws.amazon.com/privacy/
+- id: supabase
+  names: [Supabase, "Supabase, Inc.", Supabase Pte. Ltd.]
+  country: US
+  purpose: Backend as a service (database, auth, storage)
+  packages: ["@supabase/*", supabase]
+  domains: [supabase.co, supabase.com]
+  source: https://supabase.com/terms
+- id: cloudflare
+  names: [Cloudflare, "Cloudflare, Inc.", 클라우드플레어]
+  country: US
+  purpose: CDN, DNS, security, edge compute
+  packages: [cloudflare, "@cloudflare/*", wrangler]
+  domains: [cloudflare.com, cloudflareinsights.com, workers.dev, r2.cloudflarestorage.com]
+  source: https://www.cloudflare.com/privacypolicy/
+
+# ---- identity / search / payments ----
+- id: auth0
+  parent: okta
+  names: [Auth0, Auth0 by Okta, "Auth0, LLC"]
+  country: US
+  purpose: Authentication
+  # not the whole com.auth0 group: com.auth0:java-jwt and jwks-rsa are generic JWT libraries
+  packages: ["@auth0/*", auth0, auth0-python, com.auth0:auth0, com.auth0.android:auth0, com.auth0:mvc-auth-commons, com.auth0:auth0-spring-security-api]
+  domains: [auth0.com]
+  source: https://www.okta.com/privacy-policy/
+- id: clerk
+  names: ["Clerk, Inc."]
+  strictNames: [Clerk]
+  country: US
+  purpose: Authentication and user management
+  packages: ["@clerk/*", clerk-backend-api]
+  domains: [clerk.com, clerk.dev, clerk.accounts.dev]
+  source: https://clerk.com/legal/privacy
+- id: algolia
+  names: [Algolia, "Algolia, Inc.", Algolia SAS]
+  country: US
+  purpose: Hosted search
+  packages: [algoliasearch, "@algolia/*", react-instantsearch, instantsearch.js, com.algolia]
+  domains: [algolia.net, algolianet.com, algolia.io]
+  source: https://www.algolia.com/policies/privacy/
+- id: stripe
+  names: ["Stripe, Inc.", "Stripe Payments Europe, Limited", 스트라이프]
+  strictNames: [Stripe]
+  country: US
+  purpose: Payments
+  packages: [stripe, "@stripe/*", stripe-java]
+  domains: [api.stripe.com, js.stripe.com, checkout.stripe.com]
+  source: https://stripe.com/privacy
+- id: toss-payments
+  names: [Toss Payments, 토스페이먼츠, 토스페이먼츠 주식회사, 토스 페이먼츠]
+  country: KR
+  purpose: Payments (PG)
+  packages: ["@tosspayments/*"]
+  domains: [js.tosspayments.com, api.tosspayments.com, tosspayments.com]
+  source: https://www.tosspayments.com/
+- id: portone
+  names: [PortOne, 포트원, 아임포트, iamport, 주식회사 코리아포트원, 코리아포트원]
+  country: KR
+  purpose: Payment gateway integration
+  packages: ["@portone/*", iamport-react-native, io.portone]
+  domains: [cdn.portone.io, api.portone.io, cdn.iamport.kr, api.iamport.kr, service.iamport.kr]
+  source: https://portone.io/

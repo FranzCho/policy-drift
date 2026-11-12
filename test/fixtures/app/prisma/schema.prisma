@@ -1,0 +1,5 @@
+model Profile {
+  id        Int       @id
+  birthDate DateTime?
+  address   String
+}

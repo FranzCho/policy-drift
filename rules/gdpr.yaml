@@ -1,0 +1,59 @@
+# One RulePack object (see RulePack in src/types.ts): information a privacy notice must provide under GDPR Art. 13.
+# Verified against the Art. 13(1) and 13(2) text at https://gdpr-info.eu/art-13-gdpr/ .
+# sections: keywords are matched case-insensitively as plain text; any one match counts as "stated".
+# Art. 13(3)-(4) (further processing for a new purpose) are not listed: they apply only in that case.
+jurisdiction: gdpr
+sections:
+  - id: controller
+    title: Identity and contact details of the controller (and representative)
+    keywords: [data controller, the controller, controller is, controller of, contact us, our contact details, registered office, representative in the, eu representative, uk representative]
+    basis: GDPR Art. 13(1)(a)
+  - id: dpo
+    title: Contact details of the data protection officer
+    keywords: [data protection officer, dpo@, privacy officer, privacy@]
+    basis: GDPR Art. 13(1)(b)
+  - id: purposes_legal_basis
+    title: Purposes of processing and the legal basis
+    keywords: [purposes of processing, purposes for which, purpose of processing, legal basis, lawful basis, legal bases, lawful bases, we process your, we use your personal data to, why we process, based on your consent, performance of a contract, legal obligation, Article 6]
+    basis: GDPR Art. 13(1)(c)
+  - id: legitimate_interests
+    title: Legitimate interests pursued by the controller or a third party
+    keywords: [legitimate interest, legitimate interests, Article 6(1)(f), 6(1)(f)]
+    basis: GDPR Art. 13(1)(d)
+  - id: recipients
+    title: Recipients or categories of recipients
+    keywords: [recipients, categories of recipients, we share your, share your personal data, disclose your personal data, disclose your information, third parties, third-party service providers, service providers, processors, sub-processors, subprocessors]
+    basis: GDPR Art. 13(1)(e)
+  - id: third_country_transfers
+    title: Transfers to third countries or international organisations and safeguards
+    keywords: [third country, third countries, international organisation, international organization, international transfer, international transfers, transfer your personal data outside, transferred outside, outside the EEA, outside the European Economic Area, outside the EU, adequacy decision, standard contractual clauses, SCCs, binding corporate rules, appropriate safeguards, Data Privacy Framework]
+    basis: GDPR Art. 13(1)(f)
+  - id: retention
+    title: Retention period or the criteria used to determine it
+    keywords: [retention period, retention periods, how long we keep, how long we retain, how long do we keep, we retain your, we keep your, we will keep, we will retain, stored for, storage period, criteria used to determine, data retention]
+    basis: GDPR Art. 13(2)(a)
+  - id: data_subject_rights
+    title: Data subject rights (access, rectification, erasure, restriction, objection, portability)
+    keywords: [right of access, right to access, right to rectification, right to erasure, right to be forgotten, right to restriction, right to restrict, right to object, data portability, your rights, access to your personal data, request erasure, request deletion]
+    basis: GDPR Art. 13(2)(b)
+  - id: withdraw_consent
+    title: Right to withdraw consent at any time
+    keywords: [withdraw your consent, withdraw consent, withdrawal of consent, withdrawing your consent, revoke your consent, revoke consent]
+    basis: GDPR Art. 13(2)(c)
+  - id: complaint
+    title: Right to lodge a complaint with a supervisory authority
+    keywords: [supervisory authority, lodge a complaint, file a complaint, make a complaint, data protection authority, data protection regulator, complaint with the]
+    basis: GDPR Art. 13(2)(d)
+  - id: statutory_contractual
+    title: Whether providing personal data is a statutory or contractual requirement, and the consequences of not providing it
+    keywords: [statutory requirement, contractual requirement, required by law, required to enter into a contract, obliged to provide, obligated to provide, consequences of not providing, failure to provide, if you do not provide, if you choose not to provide, mandatory to provide]
+    basis: GDPR Art. 13(2)(e)
+  - id: automated_decisions
+    title: Automated decision-making, including profiling
+    keywords: [automated decision, automated decision-making, automated decision making, automated individual decision, profiling, solely automated, logic involved, automated processing]
+    basis: GDPR Art. 13(2)(f)
+crossBorderKeywords: [third country, third countries, international transfer, international transfers, transfer outside, transferred outside, transfers outside, outside the EEA, outside the European Economic Area, outside the EU, outside of the EU, international organisation, international organization, adequacy decision, standard contractual clauses, cross-border transfer, cross-border transfers]
+# GDPR sets no fixed period for notifying changes to a privacy notice, so both values are 0 (no statutory default).
+notice:
+  defaultDays: 0
+  adverseDays: 0

@@ -1,0 +1,33 @@
+{
+  "name": "policy-drift",
+  "version": "0.1.0",
+  "description": "Local MCP server and CLI that collects facts for checking code changes against published terms and privacy policies.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "policy-drift": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "registry",
+    "rules"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

@@ -1,0 +1,17 @@
+# One RulePack object (see RulePack in src/types.ts).
+# sections: items a privacy policy must state. keywords: any one match counts as "stated".
+# basis: statute article, or "미확인" when not verified.
+jurisdiction: kr
+sections:
+  - id: purpose
+    title: 개인정보의 처리 목적
+    keywords: [처리 목적, 이용 목적, 수집 목적]
+    basis: 개인정보 보호법 제30조 제1항 제1호
+  - id: retention
+    title: 개인정보의 처리 및 보유 기간
+    keywords: [보유 기간, 보유기간, 이용 기간]
+    basis: 개인정보 보호법 제30조 제1항 제2호
+crossBorderKeywords: [국외 이전, 해외 이전, 국외로 이전]
+notice:
+  defaultDays: 7
+  adverseDays: 30
