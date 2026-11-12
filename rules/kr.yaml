@@ -2,7 +2,10 @@
 # sections: keywords are matched as plain text; any one match counts as "stated".
 # Keywords list both spaced and unspaced phrasings because real policies vary.
 # basis: article read in the statute text (개인정보 보호법 제30조, 시행령 제31조, 제28조의8), or "미확인".
-# 근거 조문은 itwiki.kr 의 법령 전문 미러에서 읽어 확인했다 (law.go.kr 은 본문을 가져오지 못함).
+# 근거 조문은 2026-11-12 에 법제처 국가법령정보 Open API(law.go.kr)의 현행 본문과 대조했다.
+#   개인정보 보호법 (시행 2026-09-11) 제30조, 제28조의8 / 개인정보 보호법 시행령 (시행 2026-11-10) 제31조
+# 법 제30조 제1항 제3호의3(민감정보 공개 가능성), 제4호의2(가명정보 처리), 시행령 제31조 제1항 제4호(국외에서 직접 수집)는
+# "해당되는 경우에만" 적는 항목이라 sections 에 넣지 않았다.
 # 개인정보보호위원회 「개인정보 처리방침 작성지침」의 항목 목록 원문은 열어 보지 못했다.
 jurisdiction: kr
 sections:

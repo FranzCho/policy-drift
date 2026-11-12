@@ -167,7 +167,7 @@ Names made only of ASCII letters match case-insensitively on word boundaries, so
 - Business-rule number matching is a list of candidates. Pairing a changed number with the clause that states it is left to the host AI, and accuracy is lower than for the privacy policy checks.
 - Required-section checks look for keywords. A section written in unusual wording is reported as a candidate even though it exists.
 - This is not legal advice. The output is a draft for a responsible person to review.
-- The Korean statute references in `rules/kr.yaml` were read from a third-party mirror of the statutes, and the PIPC writing guideline could not be opened. Check them against [law.go.kr](https://www.law.go.kr). Items whose basis could not be confirmed say so.
+- The Korean statute references in `rules/kr.yaml` were checked against the current text from the Ministry of Government Legislation Open API ([law.go.kr](https://www.law.go.kr)) on 2026-11-12. Statutes change, so the file records the effective dates it was checked against. The PIPC writing guideline itself could not be opened, so the rule pack follows the Act and its Enforcement Decree only.
 - The GDPR pack is a list of the Article 13 information items, nothing more.
 - Article headings are recognized when a line starts with `제N조` followed by `(…)`, `【…】`, `[…]` or nothing (bold or not); `제1장` chapters and other numbering styles are not split. References to `제N조의M` are not checked.
 - Pages are read as UTF-8; an EUC-KR page comes out garbled.
