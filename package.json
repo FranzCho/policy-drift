@@ -1,9 +1,30 @@
 {
   "name": "policy-drift",
   "version": "0.1.0",
-  "description": "Local MCP server and CLI that collects facts for checking code changes against published terms and privacy policies.",
-  "type": "module",
+  "description": "Local MCP server that checks code changes against your terms of service and privacy policy, so your AI agent can propose clause-level fixes. Korean law first.",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "privacy-policy",
+    "terms-of-service",
+    "compliance",
+    "pipa",
+    "korea",
+    "claude-code",
+    "cursor"
+  ],
+  "author": "FranzCho",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranzCho/policy-drift.git"
+  },
+  "homepage": "https://github.com/FranzCho/policy-drift#readme",
+  "bugs": {
+    "url": "https://github.com/FranzCho/policy-drift/issues"
+  },
+  "type": "module",
   "bin": {
     "policy-drift": "dist/index.js"
   },
@@ -18,7 +39,8 @@
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.4.0",
