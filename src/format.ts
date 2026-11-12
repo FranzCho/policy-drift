@@ -32,6 +32,7 @@ ${DISCLAIMER.ko}
 - 고칠 것이 없고 scan_changes 의 \`skipped\` 와 \`notes\` 가 모두 비어 있으면 다른 말 없이 \`이번 변경은 약관·처리방침에 영향 없음\` 한 줄로 답한다.
 - scan_changes 결과의 \`skipped\` 가 비어 있지 않거나 \`notes\` 가 있으면 "영향 없음" 으로 답하지 않는다. 비교하지 못한 root 와 그 이유, notes 의 제약(예: 기준 브랜치가 지금 커밋이라 이미 커밋한 변경은 보지 못함)을 답에 적는다.
 - 법을 준수한다거나 위반이 없다고 단정하지 않는다.
+- 법령 조문 번호(예: "○○법 제N조")는 기억으로 적지 않는다. get_checklist 의 basis 에 있는 조문이거나, 연결된 법령 조회 도구(예: korean-law-mcp)로 원문을 확인한 조문만 인용한다. 둘 다 아니면 조문 번호를 빼고 "근거 법령 확인 필요" 라고 적는다.
 - 답의 맨 끝에 면책 문구를 그대로 붙인다: ${DISCLAIMER.ko}`;
 
 const EN_FORMAT = `Answer in the format below. Use only the facts this tool collected (code evidence, clause list, rule packs); do not invent anything that is not in a tool result.
@@ -58,6 +59,7 @@ Rules:
 - If nothing needs changing and scan_changes returned empty \`skipped\` and \`notes\`, answer with the single line \`No impact on the terms or privacy policy from this change\` and nothing else.
 - If scan_changes returned a non-empty \`skipped\` or any \`notes\`, do not answer "no impact". Say which roots could not be compared and why, and state the limits in notes (for example: the base branch is the current commit, so committed changes were not seen).
 - Never claim legal compliance or that there are no violations.
+- Do not cite statute article numbers from memory. Cite an article only if it appears in a get_checklist basis, or you verified the text with a connected statute lookup tool (for example korean-law-mcp for Korean law). Otherwise leave the number out and write "legal basis needs checking".
 - End the answer with this disclaimer, unchanged: ${DISCLAIMER.en}`;
 
 export const answerFormat = (lang: Lang): string => (lang === 'en' ? EN_FORMAT : KO_FORMAT);

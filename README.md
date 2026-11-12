@@ -173,6 +173,10 @@ Names made only of ASCII letters match case-insensitively on word boundaries, so
 - Pages are read as UTF-8; an EUC-KR page comes out garbled.
 - Kakao AlimTalk is in the registry so a policy naming it is understood, but it cannot be detected in code (it is sent through a reseller with no SDK or host of its own).
 
+## Works well with
+
+policy-drift does not look up statutes. Its answer format tells the agent not to cite article numbers from memory: an article is cited only when it comes from a rule pack or when the agent verified it with a statute lookup tool. If you want verified citations for Korean law, connect a statute MCP server such as [korean-law-mcp](https://github.com/chrisryugj/korean-law-mcp) next to this one. It needs an API key from the Korean Ministry of Government Legislation (open.law.go.kr), so it is optional and not bundled.
+
 ## Contributing a vendor
 
 Add one entry to `registry/vendors.yaml`. An entry without a `source` URL is rejected.

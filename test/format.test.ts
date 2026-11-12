@@ -114,3 +114,10 @@ describe('renderAudit layout (items C, D)', () => {
     expect(out).toContain('/elsewhere/a.ts:2');
   });
 });
+
+describe('answerFormat statute citation rule', () => {
+  it('forbids citing article numbers from memory in both languages', () => {
+    expect(answerFormat('ko')).toMatch(/조문 번호.*기억으로 적지 않는다[\s\S]*근거 법령 확인 필요/);
+    expect(answerFormat('en')).toMatch(/article numbers from memory[\s\S]*legal basis needs checking/);
+  });
+});
