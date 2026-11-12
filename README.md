@@ -1,12 +1,66 @@
+<div align="center">
+
 # policy-drift
 
-[한국어](README.ko.md)
+**Your code changed. Did your privacy policy?**
 
-policy-drift is a local MCP server and CLI that compares your code changes with your published terms of service and privacy policy. It collects the facts (new third-party services, personal-data fields, changed business-rule numbers, broken article references) and hands them to your AI coding tool, which tells you which clause to change, why, and with what wording.
+Ask your AI coding agent before you deploy. policy-drift finds what your code does<br>
+that your terms and privacy policy don't say, and your agent proposes the wording to fix it.
+
+**English** · [한국어](README.ko.md)
+
+<img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue">
+<img alt="Node 20 or later" src="https://img.shields.io/badge/node-%E2%89%A5%2020-brightgreen">
+<img alt="MCP server" src="https://img.shields.io/badge/MCP-server-8A2BE2">
+<img alt="Runs locally, no telemetry" src="https://img.shields.io/badge/runs-locally-lightgrey">
+
+[Install](#install) · [Ask your agent](#ask-your-agent) · [Sample answer](#sample-answer) · [Configuration](#configuration) · [Limitations](#limitations)
+
+</div>
+
+---
+
+```text
+You    > I'm about to deploy. Do the terms or privacy policy need updating?
+
+Agent  > Changes needed: 1 · Privacy policy 1
+
+         1. Privacy policy, 4. Processors — add a row to the table
+            Reason: code that sends user activity text to OpenAI was added
+            Evidence: services/api/src/ai/summarizer.ts:12
+            Proposed wording: | OpenAI, L.L.C. | Summarizing user activity | Until the purpose is fulfilled |
+            Confidence: high
+
+         Notice period: 7 days before, per section 13 of the policy
+         ※ Draft only. Not legal advice. Have a responsible person review before publishing.
+```
+
+## Why
+
+| | |
+|---|---|
+| **Clause-level fixes** | Which clause, why, the proposed wording, and the notice period your own document requires. Not a checklist. |
+| **Evidence on every finding** | Each item points at a `file:line` in your code, so you can check it in seconds. |
+| **Stays on your machine** | No account, no API key, no telemetry. Your code never leaves your computer. |
+| **Korean law and GDPR** | Rule packs for the Korean Personal Information Protection Act and GDPR Art. 13. The Korean article references are checked against law.go.kr. |
 
 ## The problem
 
 A team ships features for a year. Somewhere along the way the code starts sending user input to an LLM API, adds an error tracker, and gets a push-notification SDK. The privacy policy still describes the app as it was at launch, and nobody remembers to update it because nothing in the code review points at the document. policy-drift looks at the code, looks at the document, and tells you where they have drifted apart.
+
+## How it works
+
+```mermaid
+flowchart LR
+  You["You: do the terms need updating?"] --> Agent["AI coding agent"]
+  Agent -- "MCP" --> PD["policy-drift"]
+  PD --> Code["Your code and git diff"]
+  PD --> Docs["Published terms and privacy policy"]
+  PD -- "facts with file:line" --> Agent
+  Agent --> Answer["Clause-level proposal and notice period"]
+```
+
+policy-drift is a local MCP server and CLI. It collects the facts (new third-party services, personal-data fields, changed business-rule numbers, broken article references) and never calls an LLM itself. Your AI coding tool reads those facts and your documents, then tells you which clause to change, why, and with what wording.
 
 ## Install
 
